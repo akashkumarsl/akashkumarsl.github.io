@@ -1,103 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SL Akash Kumar Profile</title>
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Inter', sans-serif; }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
-    <main class="max-w-4xl mx-auto p-6">
-      <header class="flex justify-between items-center mb-10">
-        <div class="text-center w-full">
-          <h1 class="text-4xl font-bold">SL Akash Kumar</h1>
-          <p class="text-lg mt-2">
-            <a href="mailto:akash3dream@gmail.com" class="text-blue-600">akash3dream@gmail.com</a> | 
-            <a href="tel:+919361704736" class="text-blue-600">+91 9361704736</a>
-          </p>
-          <p class="mt-1">
-            <a href="https://linkedin.com/in/sl-akash-kumar" class="text-blue-600" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/akashkumarsl" class="text-blue-600" target="_blank">GitHub</a>
-          </p>
-        </div>
-        <div class="w-32 h-32 ml-4">
-          <img src="White Backround.jpg" alt="Profile Photo" class="rounded-lg shadow-md object-cover w-full h-full" />
-        </div>
-      </header>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="profile.jpg" alt="Profile Photo" class="profile-img" />
+            <div class="header-info">
+                <h1>SL Akash Kumar</h1>
+                <p>Software Engineer specializing in 3D Graphics and Machine Learning</p>
+                <p>
+                    <a href="mailto:akash3dream@gmail.com">Email</a> |
+                    <a href="https://linkedin.com/in/sl-akash-kumar" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                    <a href="https://github.com/akashkumarsl" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </p>
+            </div>
+        </header>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Objective</h2>
-        <p>To leverage my expertise in 3D rendering technologies and programming skills to support the 3D performance, ML stack, and graphics development pipeline.</p>
-      </section>
+        <section id="about">
+            <p>
+                Experienced Software Engineer with a foundation from IIT Madras, actively involved in Graphics Technology projects. To leverage my expertise in 3D rendering technologies and programming skills to support the 3D performance, ML stack, and graphics development pipeline. Contributed intellectual property to Sony by developing photorealistic renderers, optimising rendering speeds, and integrating machine learning into graphics pipelines. Skilled in GPU rendering with C++, Python, JavaScript, OpenGL, and WebGL. Other interests include technical stock analysis, resistance training for fitness, and culinary skills focused on nutritious meals.
+            </p>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Summary</h2>
-        <p class="mb-2">Experienced Software Engineer with a foundation from IIT Madras, actively involved in Graphics Technology projects. Contributed intellectual property to Sony by developing photorealistic renderers, optimising rendering speeds, and integrating machine learning into graphics pipelines. Skilled in GPU rendering with C++, Python, JavaScript, OpenGL, and WebGL.</p>
-        <p>Other interests include technical stock analysis, resistance training for fitness, and culinary skills focused on nutritious meals.</p>
-      </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Sony India Software Center, Bangalore</h3>
+                <p><em>Software Engineer Grade 3 | Apr 2023 – Present</em></p>
+                <ul>
+                    <li>Performance Rating for 2023 FY: <strong>"Exceeds Expectations"</strong></li>
+                    <li>Performance Rating for 2024 FY: <strong>"Exceeds Expectations"</strong></li>
+                    <li><strong>ML Enhanced C++ OpenGL Renderer:</strong> Developed a renderer with Phong Lighting and OBJ support; integrated eye gaze and pinch-zoom ML with MediaPipe; improved performance by 30%.</li>
+                    <li><strong>Platform Independent GLTF Renderer:</strong> Built cross-platform WebGL renderer for Sony Spatial Reality Display. Added async GLTF parsing, animation engine, dynamic shaders, PBR, and Draco compression. 5x faster than Three.js/Babylon.js.</li>
+                    <li><strong>Synthetic Data Generator Unreal Plugin:</strong> Created a Movie Render plugin for 2D/3D bounding boxes, segmentation, keypoints. Added camera/actor randomization and style-transfer ML to reduce domain gap.</li>
+                    <li><strong>Live XR Video:</strong> Worked on photogrammetry-based live 3D video using MediaPipe, Open3D, COLMAP, VRM avatar export.</li>
+                    <li><strong>Additional:</strong> Best Participant - Idea2Hack Hackathon. Built HRTF-based spatial audio using 3D ear geometry from video. Supported SPA & SIE plugin development for virtual production.</li>
+                </ul>
+            </div>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Experience</h2>
-        <h3 class="text-xl font-bold">Sony India Software Center, Bangalore</h3>
-        <p class="italic">Software Engineer Grade 3 | Apr 2023 – Present</p>
-        <ul class="list-disc list-inside mt-2 space-y-1">
-          <li>Performance Rating for 2023 FY: <strong>"Exceeds Expectations"</strong></li>
-          <li>Performance Rating for 2024 FY: <strong>"Exceeds Expectations"</strong></li>
-          <li><strong>ML Enhanced C++ OpenGL Renderer:</strong> Developed a renderer with Phong Lighting and OBJ support; integrated eye gaze and pinch-zoom ML with MediaPipe; improved performance by 30%.</li>
-          <li><strong>Platform Independent GLTF Renderer:</strong> Built cross-platform WebGL renderer for Sony Spatial Reality Display. Added async GLTF parsing, animation engine, dynamic shaders, PBR, and Draco compression. 5x faster than Three.js/Babylon.js.</li>
-          <li><strong>Synthetic Data Generator Unreal Plugin:</strong> Created a Movie Render plugin for 2D/3D bounding boxes, segmentation, keypoints. Added camera/actor randomization and style-transfer ML to reduce domain gap.</li>
-          <li><strong>Live XR Video:</strong> Worked on photogrammetry-based live 3D video using MediaPipe, Open3D, COLMAP, VRM avatar export.</li>
-          <li><strong>Additional:</strong> Best Participant - Idea2Hack Hackathon. Built HRTF-based spatial audio using 3D ear geometry from video. Supported SPA & SIE plugin development for virtual production.</li>
-        </ul>
-      </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>
+                <strong>Languages:</strong> C++, Python, Java, JavaScript <br>
+                <strong>Technologies:</strong> Rendering Pipeline, Photogrammetry, OpenGL, WebGL, Unreal Engine, Draco, ARCore, COLMAP, Texture Compression <br>
+                <strong>Frameworks:</strong> GLFW, Assimp, GLM, ImGui, PyOpenGL, PyAssimp <br>
+                <strong>ML Frameworks:</strong> MediaPipe, OpenCV, TensorFlow <br>
+                <strong>Rendering Algorithms:</strong> Forward/Deferred Rendering, Phong Lighting, PBR, Cook-Torrance BRDF, IBL Skybox <br>
+                <strong>Tools:</strong> Visual Studio, Git, VS Code, Docker
+            </p>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Skills</h2>
-        <div class="grid grid-cols-2 gap-4">
-          <ul class="list-disc list-inside">
-            <li><strong>Languages:</strong> C++, Python, Java, JavaScript</li>
-            <li><strong>Technologies:</strong> Rendering Pipeline, Photogrammetry, OpenGL, WebGL, Unreal Engine, Draco, ARCore, COLMAP, Texture Compression</li>
-            <li><strong>Frameworks:</strong> GLFW, Assimp, GLM, ImGui, PyOpenGL, PyAssimp</li>
-          </ul>
-          <ul class="list-disc list-inside">
-            <li><strong>ML Frameworks:</strong> MediaPipe, OpenCV, TensorFlow</li>
-            <li><strong>Rendering Algorithms:</strong> Forward/Deferred Rendering, Phong Lighting, PBR, Cook-Torrance BRDF, IBL Skybox</li>
-            <li><strong>Tools:</strong> Visual Studio, Git, VS Code, Docker</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Education</h2>
-        <ul class="list-disc list-inside space-y-1">
-          <li><strong>IIT Madras</strong> (Sep 2022 – Mar 2023): Top performer in Sony & Pravartak’s Graphics course. Covered OS, Networking, C++, Python, and Computer Graphics.</li>
-          <li><strong>Anna University – Mepco Schlenk Engineering College</strong> (2018 – 2022): BE – 82.3%</li>
-          <li><strong>Higher Secondary School</strong> (2017 – 2018): 89.2%</li>
-          <li><strong>SSLC</strong> (2015 – 2016): 97.4%</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-semibold mb-2">Professional References</h2>
-        <ul class="space-y-3">
-          <li>
-            <strong>Professor Sankara Narayanan</strong><br>
-            Retired HOD, Computer Science Dept.<br>
-            Email: <a href="mailto:kautilyan@gmail.com" class="text-blue-600">kautilyan@gmail.com</a><br>
-            Phone: 9840503932
-          </li>
-          <li>
-            <strong>Ramu Ramachandran</strong><br>
-            Associate Director, Graphics Division, Sony<br>
-            Email: <a href="mailto:Ramu.Ramachandran@sony.com" class="text-blue-600">Ramu.Ramachandran@sony.com</a><br>
-            Phone: 9886787138
-          </li>
-        </ul>
-      </section>
-    </main>
-  </body>
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>IIT Madras</h3>
+                <p>Top performer in Sony & Pravartak’s Graphics course (Sep 2022 – Mar 2023)</p>
+                <p>Covered OS, Networking, C++, Python, and Computer Graphics.</p>
+            </div>
+            <div class="education-item">
+                <h3>Anna University – Mepco Schlenk Engineering College</h3>
+                <p>BE – 82.3% (2018 – 2022)</p>
+            </div>
+            <div class="education-item">
+                <h3>Higher Secondary School</h3>
+                <p>89.2% (2017 – 2018)</p>
+            </div>
+            <div class="education-item">
+                <h3>SSLC</h3>
+                <p>97.4% (2015 – 2016)</p>
+            </div>
+        </section>
+    </div>
+</body>
 </html>
