@@ -610,6 +610,106 @@
         flex: 1 1 180px;
       }
     }
+  
+    /* === PREMIUM APPLE-LIKE MICRO INTERACTIONS === */
+    .skill-card, .experience-card, .education-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::after,
+    .experience-card::after,
+    .education-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(124,198,255,0.18), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .skill-card:hover::after,
+    .experience-card:hover::after,
+    .education-card:hover::after {
+      opacity: 1;
+    }
+
+    /* smooth scale */
+    .skill-card:hover,
+    .experience-card:hover,
+    .education-card:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    /* HERO TEXT FADE IN */
+    .hero-card h2 {
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-card .lead {
+      animation: fadeUp 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.2s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* GRADIENT TEXT SHIFT */
+    .hero h2 span {
+      background-size: 200% 200%;
+      animation: gradientMove 6s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* NAV HOVER LINE */
+    .nav a {
+      position: relative;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 60%;
+    }
+
+    /* CURSOR GLOW */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(124,198,255,0.12), transparent 60%);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      transition: transform 0.05s linear;
+    }
+
   </style>
 </head>
 <body>
@@ -921,6 +1021,25 @@
     });
 
     revealItems.forEach(item => revealObserver.observe(item));
+  </script>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <script>
+    // cursor glow
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+
+      document.querySelectorAll('.skill-card, .experience-card, .education-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', x + 'px');
+        card.style.setProperty('--y', y + 'px');
+      });
+    });
   </script>
 </body>
 </html>
