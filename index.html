@@ -1,581 +1,889 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SL Akash Kumar</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SL Akash Kumar | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0d12;
+      --bg-soft: #10141b;
+      --panel: rgba(18, 24, 33, 0.78);
+      --panel-strong: rgba(20, 27, 37, 0.96);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.14);
+      --text: #eaf1fb;
+      --muted: #99a7ba;
+      --soft: #c7d2e1;
+      --accent: #7cc6ff;
+      --accent-2: #8b7dff;
+      --accent-3: #52e5c8;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
 
-<style>
-/* ==============================================
-   TOKENS — everything flips on data-theme swap
-   ============================================== */
-[data-theme="light"] {
-  --bg:         #f9f7f4;
-  --sidebar-bg: #ffffff;
-  --surface2:   #f3f0eb;
-  --border:     #e8e3dc;
-  --text:       #18160f;
-  --sub:        #5a5650;
-  --muted:      #8c8880;
-  --dim:        #b8b4af;
-  --accent:     #7c5c3a;
-  --accent-bg:  #f5ede2;
-  --accent-br:  #ddc9ae;
-  --link:       #3d6e5c;
-  --tog-bg:     #18160f;
-  --tog-col:    #f9f7f4;
-  --calli-col:  #5c3d1e;
-  --calli-sub:  #a07850;
-}
-[data-theme="dark"] {
-  --bg:         #0f0e0c;
-  --sidebar-bg: #141311;
-  --surface2:   #211f1c;
-  --border:     rgba(255,255,255,0.08);
-  --text:       #e8e4de;
-  --sub:        #b0aa9f;
-  --muted:      #7a766f;
-  --dim:        #4e4b46;
-  --accent:     #d4a872;
-  --accent-bg:  rgba(212,168,114,0.09);
-  --accent-br:  rgba(212,168,114,0.22);
-  --link:       #7ab8a0;
-  --tog-bg:     #e8e4de;
-  --tog-col:    #0f0e0c;
-  --calli-col:  #e8d5b0;
-  --calli-sub:  #c4a06a;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,198,255,0.14), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(139,125,255,0.16), transparent 26%),
+        linear-gradient(180deg, #091018 0%, #0a0d12 35%, #0b1018 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-/* ==============================================
-   RESET & BASE
-   ============================================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 14.5px; line-height: 1.75;
-  background: var(--bg); color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  transition: background .35s, color .35s;
-}
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-ul { list-style: none; padding: 0; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(255,255,255,0.35), transparent 90%);
+    }
 
-/* ==============================================
-   LAYOUT — .container is now a 2-col grid
-   ============================================== */
-.container {
-  display: grid;
-  grid-template-columns: 268px 1fr;
-  min-height: 100vh;
-}
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-/* ==============================================
-   SIDEBAR  (was <header>)
-   ============================================== */
-.sidebar {
-  position: sticky; top: 0;
-  height: 100vh; overflow-y: auto; scrollbar-width: none;
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--border);
-  padding: 44px 28px 36px;
-  display: flex; flex-direction: column;
-  transition: background .35s, border-color .35s;
-}
-.sidebar::-webkit-scrollbar { display: none; }
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
 
-/* profile photo — your profile.jpg; shows initials if missing */
-.profile-img {
-  width: 72px; height: 72px; border-radius: 50%;
-  object-fit: cover;
-  border: 1.5px solid var(--accent-br);
-  background: var(--accent-bg);
-  margin-bottom: 18px; flex-shrink: 0;
-  transition: border-color .35s;
-}
-.profile-fallback {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: var(--accent-bg); border: 1.5px solid var(--accent-br);
-  display: none; align-items: center; justify-content: center;
-  font-family: 'Lora', serif; font-size: 20px;
-  font-style: italic; font-weight: 500; color: var(--accent);
-  margin-bottom: 18px; flex-shrink: 0;
-  transition: background .35s, border-color .35s;
-}
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      padding-top: 16px;
+    }
 
-.header-info h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 28px; font-weight: 400;
-  color: var(--calli-col); line-height: 1.15; letter-spacing: .5px;
-  margin-bottom: 6px; transition: color .35s;
-}
-.header-info .tagline {
-  font-size: 12px; color: var(--muted);
-  line-height: 1.5; transition: color .35s;
-}
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      background: rgba(9, 13, 18, 0.62);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
 
-/* ── calligraphy flourish under sidebar name ── */
-.calli-rule {
-  display: flex; align-items: center; gap: 8px;
-  margin: 8px 0 0;
-}
-.calli-rule span {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 18px; color: var(--calli-sub);
-  line-height: 1; transition: color .35s;
-}
-.calli-rule::before,
-.calli-rule::after {
-  content: '';
-  flex: 1; height: 1px;
-  background: var(--accent-br);
-  transition: background .35s;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-.s-divider {
-  width: 100%; height: 1px;
-  background: var(--border); margin: 24px 0;
-  transition: background .35s;
-}
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(124,198,255,0.24);
+      flex-shrink: 0;
+    }
 
-/* sidebar nav */
-nav { display: flex; flex-direction: column; gap: 2px; }
-nav a {
-  font-size: 13px; font-weight: 500; color: var(--muted);
-  padding: 7px 10px; border-radius: 7px;
-  display: flex; align-items: center; gap: 9px;
-  transition: color .15s, background .15s;
-  text-decoration: none;
-}
-nav a:hover { color: var(--text); background: var(--surface2); }
-nav a.on   { color: var(--accent); background: var(--accent-bg); }
-.ndot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--border); flex-shrink: 0;
-  transition: background .15s;
-}
-nav a.on .ndot   { background: var(--accent); }
-nav a:hover .ndot { background: var(--muted); }
+    .brand-text { min-width: 0; }
+    .brand-text h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .brand-text p {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-/* contact links (was "Email | LinkedIn | GitHub") */
-.header-links {
-  margin-top: auto; padding-top: 24px;
-  display: flex; flex-direction: column; gap: 9px;
-}
-.header-links a {
-  font-size: 11.5px; color: var(--dim);
-  display: flex; align-items: center; gap: 7px;
-  text-decoration: none; transition: color .15s;
-}
-.header-links a:hover { color: var(--text); }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-/* ==============================================
-   THEME TOGGLE — fixed pill, top-right
-   ============================================== */
-.theme-toggle {
-  position: fixed; top: 20px; right: 26px; z-index: 200;
-  display: flex; align-items: center; gap: 7px;
-  background: var(--tog-bg); color: var(--tog-col);
-  border: none; cursor: pointer;
-  padding: 7px 14px 7px 10px; border-radius: 100px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 1.2px; text-transform: uppercase;
-  box-shadow: 0 2px 12px rgba(0,0,0,.12);
-  transition: background .35s, color .35s;
-  outline: none; user-select: none;
-}
-.theme-toggle:hover  { opacity: .86; }
-.theme-toggle:active { transform: scale(.97); }
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: 0.28s ease;
+    }
 
-.ti { width: 17px; height: 17px; position: relative; flex-shrink: 0; }
-.ti svg { position: absolute; inset: 0; transition: opacity .3s, transform .35s; }
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
 
-[data-theme="light"] .ti .ic-moon { opacity: 1; transform: scale(1) rotate(0deg); }
-[data-theme="light"] .ti .ic-sun  { opacity: 0; transform: scale(.6) rotate(60deg); }
-[data-theme="dark"]  .ti .ic-sun  { opacity: 1; transform: scale(1) rotate(0deg); }
-[data-theme="dark"]  .ti .ic-moon { opacity: 0; transform: scale(.6) rotate(-60deg); }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* ==============================================
-   MAIN CONTENT
-   ============================================== */
-.main-content { padding: 60px 76px 80px; max-width: 840px; }
+    .btn,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-/* section header (replaces your <h2> + border-bottom) */
-.sec-head {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 32px;
-}
-.sec-label {
-  font-size: 10px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 2.8px;
-  color: var(--accent); white-space: nowrap;
-  transition: color .35s;
-}
-.sec-rule { flex: 1; height: 1px; background: var(--border); transition: background .35s; }
+    .btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 12px 26px rgba(124,198,255,0.18);
+    }
 
-section { margin-bottom: 64px; }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--line);
+      color: var(--text);
+    }
 
-/* ==============================================
-   ABOUT
-   ============================================== */
-.hero { margin-bottom: 64px; }
-.hero-greeting {
-  font-family: 'Lora', serif;
-  font-size: 13px; font-style: italic;
-  color: var(--muted); margin-bottom: 6px;
-  letter-spacing: .3px; transition: color .35s;
-}
-.hero h1 {
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(58px, 7vw, 88px);
-  font-weight: 400; line-height: 1.0;
-  color: var(--calli-col);
-  letter-spacing: 1px; margin-bottom: 6px;
-  transition: color .35s;
-}
+    .btn:hover,
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+    }
 
-/* signature underline — hand-drawn SVG squiggle */
-.sig-line {
-  display: block;
-  margin-bottom: 24px;
-  width: 260px;
-  opacity: .5;
-  transition: opacity .35s;
-}
-[data-theme="dark"] .sig-line { opacity: .35; }
-.sig-line path { stroke: var(--accent); }
-#about p {
-  font-size: 14.5px; color: var(--sub);
-  line-height: 1.85; max-width: 600px;
-  transition: color .35s;
-}
-#about strong { color: var(--text); font-weight: 500; }
+    main {
+      padding: 26px 0 60px;
+    }
 
-/* ==============================================
-   EXPERIENCE  (your .experience-item + ul li)
-   ============================================== */
-.experience-item { margin-bottom: 36px; }
-.experience-item:last-child { margin-bottom: 0; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      min-height: calc(100vh - 140px);
+      padding-top: 18px;
+    }
 
-.exp-head-row {
-  display: flex; align-items: baseline;
-  justify-content: space-between; gap: 14px;
-  flex-wrap: wrap; margin-bottom: 3px;
-}
-.experience-item h3 {
-  font-family: 'Lora', serif;
-  font-size: 18px; font-weight: 500;
-  color: var(--text); letter-spacing: -.2px;
-  margin: 0; transition: color .35s;
-}
-.exp-date {
-  font-size: 11.5px; color: var(--dim);
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 100px; padding: 2px 10px; white-space: nowrap;
-  transition: background .35s, border-color .35s, color .35s;
-}
-.exp-role {
-  font-size: 12.5px; color: var(--accent);
-  margin-bottom: 14px; transition: color .35s;
-}
-.perf-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
-.perf-pill {
-  font-size: 11px; padding: 3px 11px; border-radius: 100px;
-  border: 1px solid var(--accent-br);
-  color: var(--accent); background: var(--accent-bg);
-  transition: background .35s, border-color .35s, color .35s;
-}
+    .hero-card,
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
 
-/* your <li> items — left-bordered rows */
-.experience-item ul { display: flex; flex-direction: column; }
-.experience-item ul li {
-  padding: 13px 0 13px 16px;
-  border-left: 2px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  font-size: 13.5px; color: var(--muted); line-height: 1.75;
-  transition: border-left-color .2s, color .35s, border-bottom-color .35s;
-}
-.experience-item ul li:last-child { border-bottom: none; }
-.experience-item ul li:hover { border-left-color: var(--accent); }
-.experience-item ul li strong { color: var(--text); font-weight: 600; }
+    .hero-card {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-/* ==============================================
-   SKILLS
-   ============================================== */
-.skill-rows { display: flex; flex-direction: column; }
-.skill-row {
-  display: grid; grid-template-columns: 148px 1fr;
-  gap: 14px; align-items: baseline;
-  padding: 13px 0; border-bottom: 1px solid var(--border);
-  transition: border-color .35s;
-}
-.skill-row:last-child { border-bottom: none; }
-.sk-cat {
-  font-size: 10.5px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1.6px;
-  color: var(--dim); transition: color .35s;
-}
-.sk-val { font-size: 13.5px; color: var(--sub); line-height: 1.7; transition: color .35s; }
+    .hero-card::before,
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,198,255,0.22), transparent 65%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
 
-/* ==============================================
-   EDUCATION  (your .education-item)
-   ============================================== */
-.edu-rows { display: flex; flex-direction: column; }
-.education-item {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 20px;
-  padding: 18px 0; border-bottom: 1px solid var(--border);
-  transition: border-color .35s;
-}
-.education-item:first-child { padding-top: 0; }
-.education-item:last-child  { border-bottom: none; }
-.edu-left { flex: 1; }
-.education-item h3 {
-  font-family: 'Lora', serif;
-  font-size: 15px; font-weight: 500; color: var(--text);
-  letter-spacing: -.15px; margin: 0 0 3px; transition: color .35s;
-}
-.education-item p {
-  font-size: 12.5px; color: var(--muted);
-  line-height: 1.55; margin: 0; transition: color .35s;
-}
-.edu-score {
-  font-family: 'Lora', serif;
-  font-size: 22px; font-weight: 400; font-style: italic;
-  color: var(--accent); white-space: nowrap;
-  text-align: right; flex-shrink: 0; transition: color .35s;
-}
-.edu-score small {
-  display: block; font-family: 'Inter', sans-serif;
-  font-size: 9px; font-style: normal; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1.5px;
-  color: var(--dim); margin-top: 1px; transition: color .35s;
-}
-.edu-badge {
-  font-size: 11.5px; color: var(--accent);
-  border: 1px solid var(--accent-br); border-radius: 100px;
-  padding: 3px 12px; background: var(--accent-bg);
-  white-space: nowrap; flex-shrink: 0;
-  transition: background .35s, border-color .35s, color .35s;
-}
+    .hero-card::before { top: -80px; right: -50px; }
 
-/* ==============================================
-   FOOTER
-   ============================================== */
-.foot {
-  padding-top: 28px; border-top: 1px solid var(--border);
-  font-size: 11.5px; color: var(--dim);
-  transition: border-color .35s, color .35s;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
 
-/* ==============================================
-   RESPONSIVE
-   ============================================== */
-@media (max-width: 820px) {
-  .container { grid-template-columns: 1fr; }
-  .sidebar { position: relative; height: auto; padding: 28px 20px; }
-  nav { flex-direction: row; flex-wrap: wrap; }
-  .header-links { flex-direction: row; flex-wrap: wrap; padding-top: 16px; margin-top: 0; }
-  .main-content { padding: 36px 20px 60px; }
-  .skill-row { grid-template-columns: 1fr; gap: 3px; }
-  .education-item { flex-direction: column; align-items: flex-start; }
-  .edu-score { text-align: left; }
-  .theme-toggle { top: 14px; right: 14px; }
-}
-</style>
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 18px rgba(82,229,200,0.7);
+    }
+
+    .hero h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(42px, 6vw, 74px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    .hero h2 span {
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 55%, #cfc9ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p.lead {
+      margin-top: 20px;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.9;
+    }
+
+    .hero-meta {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 18px;
+    }
+
+    .hero-visual::before { bottom: -90px; left: -40px; }
+
+    .profile-block {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .avatar,
+    .avatar-fallback {
+      width: 92px;
+      height: 92px;
+      border-radius: 26px;
+      object-fit: cover;
+      border: 1px solid var(--line-strong);
+      background: linear-gradient(135deg, rgba(124,198,255,0.18), rgba(139,125,255,0.16));
+    }
+
+    .avatar-fallback {
+      display: none;
+      place-items: center;
+      font-weight: 800;
+      font-size: 26px;
+      color: white;
+    }
+
+    .profile-copy h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .profile-copy p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .socials a {
+      flex: 1 1 150px;
+      min-width: 0;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: var(--soft);
+      transition: 0.25s ease;
+      font-size: 13px;
+    }
+
+    .socials a:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .section {
+      padding: 34px;
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-head small {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section-head h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(24px, 4vw, 34px);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 56ch;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .experience-grid,
+    .education-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .experience-card,
+    .education-card,
+    .skill-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.03);
+      padding: 22px;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .experience-card:hover,
+    .education-card:hover,
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .exp-top,
+    .edu-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .experience-card h4,
+    .education-card h4,
+    .skill-card h4 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124,198,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(124,198,255,0.18);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .subrole {
+      color: var(--soft);
+      font-size: 13px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .pill-row,
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 16px;
+    }
+
+    .pill {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(139,125,255,0.1);
+      color: #d5d0ff;
+      border: 1px solid rgba(139,125,255,0.18);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .bullets {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .bullets li {
+      list-style: none;
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      left: 0;
+      top: 10px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .footer {
+      margin: 36px 0 20px;
+      padding: 22px 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .btn-ghost, .experience-card, .education-card, .skill-card, .socials a { transition: none; }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { min-height: auto; }
+      .topbar-inner {
+        border-radius: 26px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(calc(100% - 18px), var(--max)); }
+      .hero-card,
+      .hero-visual,
+      .section { padding: 22px; }
+      .profile-block {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        width: 100%;
+      }
+      .actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn,
+      .btn-ghost {
+        justify-content: center;
+        flex: 1 1 180px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- ── THEME TOGGLE ── -->
-<button class="theme-toggle" id="tog" aria-label="Toggle theme">
-  <span class="ti">
-    <svg class="ic-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-    <svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="4"/>
-      <line x1="12" y1="2"  x2="12" y2="5"/>   <line x1="12" y1="19" x2="12" y2="22"/>
-      <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>  <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-      <line x1="2" y1="12" x2="5" y2="12"/>    <line x1="19" y1="12" x2="22" y2="12"/>
-      <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/> <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-    </svg>
-  </span>
-  <span id="tog-label">Dark</span>
-</button>
-
-<!-- ════ your .container ════ -->
-<div class="container">
-
-  <!-- ── SIDEBAR (was your <header>) ── -->
-  <aside class="sidebar">
-
-    <!-- your <img src="profile.jpg"> — falls back to initials if not found -->
-    <img src="profile.jpg" alt="Profile Photo" class="profile-img"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-    <div class="profile-fallback">AK</div>
-
-    <div class="header-info">
-      <h1>SL Akash Kumar</h1>
-      <div class="calli-rule"><span>✦</span></div>
-      <p class="tagline">Software Engineer specializing in<br/>3D Graphics and Machine Learning</p>
-    </div>
-
-    <div class="s-divider"></div>
-
-    <nav id="sidenav">
-      <a href="#about"       class="on"><span class="ndot"></span>About</a>
-      <a href="#experience">            <span class="ndot"></span>Experience</a>
-      <a href="#skills">                <span class="ndot"></span>Skills</a>
-      <a href="#education">             <span class="ndot"></span>Education</a>
-    </nav>
-
-    <!-- your Email | LinkedIn | GitHub -->
-    <div class="header-links">
-      <a href="/cdn-cgi/l/email-protection#9cfdf7fdeff4aff8eef9fdf1dcfbf1fdf5f0b2fff3f1">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
-          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
-        </svg>
-        <span class="__cf_email__" data-cfemail="c2a3a9a3b1aaf1a6b0a7a3af82a5afa3abaeeca1adaf">[email&#160;protected]</span>
-      </a>
-      <a href="https://linkedin.com/in/sl-akash-kumar" target="_blank" rel="noopener">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-          <circle cx="4" cy="4" r="2"/>
-        </svg>
-        linkedin.com/in/sl-akash-kumar
-      </a>
-      <a href="https://github.com/akashkumarsl" target="_blank" rel="noopener">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-        </svg>
-        github.com/akashkumarsl
-      </a>
-    </div>
-  </aside>
-
-  <!-- ── MAIN (was everything below <header>) ── -->
-  <main class="main-content">
-
-    <!-- your #about -->
-    <div class="hero" id="about">
-      <p class="hero-greeting">Hello, I'm —</p>
-      <h1>Akash Kumar SL</h1>
-      <!-- hand-drawn squiggle underline -->
-      <svg class="sig-line" viewBox="0 0 260 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 12 C20 4, 40 18, 60 10 C80 2, 100 16, 120 9 C140 2, 160 15, 180 8 C200 1, 220 14, 240 8 C250 5, 255 7, 258 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <p>
-        Experienced Software Engineer with a foundation from <strong>IIT Madras</strong>, actively involved in Graphics Technology projects. Leveraging expertise in 3D rendering technologies and programming skills to support the 3D performance, ML stack, and graphics development pipeline. Contributed intellectual property to <strong>Sony</strong> by developing photorealistic renderers, optimising rendering speeds, and integrating machine learning into graphics pipelines. Skilled in GPU rendering with C++, Python, JavaScript, OpenGL, and WebGL. Other interests include technical stock analysis, resistance training for fitness, and culinary skills focused on nutritious meals.
-      </p>
-    </div>
-
-    <!-- your #experience -->
-    <section id="experience">
-      <div class="sec-head"><span class="sec-label">Experience</span><div class="sec-rule"></div></div>
-
-      <div class="experience-item">
-        <div class="exp-head-row">
-          <h3>Sony India Software Center, Bangalore</h3>
-          <span class="exp-date">Apr 2023 – Present</span>
+  <div class="shell topbar">
+    <header class="topbar-inner">
+      <a class="brand" href="#home">
+        <div class="brand-mark">AK</div>
+        <div class="brand-text">
+          <h1>SL Akash Kumar</h1>
+          <p>Software Engineer · Graphics · Machine Learning</p>
         </div>
-        <div class="exp-role">Software Engineer Grade 3</div>
-        <div class="perf-row">
-          <span class="perf-pill">★ Exceeds Expectations — FY 2023</span>
-          <span class="perf-pill">★ Exceeds Expectations — FY 2024</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn-ghost" href="https://linkedin.com/in/sl-akash-kumar" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/akashkumarsl" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
+  </div>
+
+  <main class="shell">
+    <section class="hero reveal" id="home">
+      <div class="hero-card">
+        <div class="eyebrow"><span class="dot"></span> Available for graphics, ML, and rendering-focused roles</div>
+        <h2>Building <span>real-time graphics</span> and ML-assisted 3D systems.</h2>
+        <p class="lead">
+          I’m Akash Kumar SL, a software engineer working across rendering pipelines, synthetic data systems, Unreal Engine tooling, and cross-platform 3D experiences. My focus is on turning graphics engineering into practical, high-performance products.
+        </p>
+        <div class="hero-meta">
+          <div class="chip">Bangalore, India</div>
+          <div class="chip">Sony India Software Center</div>
+          <div class="chip">IIT Madras Foundation</div>
         </div>
-        <ul>
-          <li><strong>ML Enhanced C++ OpenGL Renderer:</strong> Developed a renderer with Phong Lighting and OBJ support; integrated eye gaze and pinch-zoom ML with MediaPipe; improved performance by 30%.</li>
-          <li><strong>Platform Independent GLTF Renderer:</strong> Built cross-platform WebGL renderer for Sony Spatial Reality Display. Added async GLTF parsing, animation engine, dynamic shaders, PBR, and Draco compression. 5× faster than Three.js / Babylon.js.</li>
-          <li><strong>Synthetic Data Generator Unreal Plugin:</strong> Created a Movie Render plugin for 2D/3D bounding boxes, segmentation, keypoints. Added camera/actor randomization and style-transfer ML to reduce domain gap.</li>
-          <li><strong>Live XR Video:</strong> Worked on photogrammetry-based live 3D video using MediaPipe, Open3D, COLMAP, VRM avatar export.</li>
-          <li><strong>HRTF Spatial Audio:</strong> Best Participant — Idea2Hack Hackathon. Built HRTF-based spatial audio using 3D ear geometry from video. Supported SPA &amp; SIE plugin development for virtual production.</li>
-        </ul>
+        <div class="hero-cta">
+          <a class="btn" href="#experience">View Experience</a>
+          <a class="btn-ghost" href="mailto:your-email@example.com">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="hero-visual panel reveal">
+        <div class="profile-block">
+          <img src="profile.jpg" alt="Akash Kumar profile photo" class="avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
+          <div class="avatar-fallback">AK</div>
+          <div class="profile-copy">
+            <h3>Akash Kumar SL</h3>
+            <p>Software Engineer specializing in 3D Graphics, rendering systems, Unreal Engine tools, and machine-learning-assisted visual pipelines.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>5×</strong>
+            <span>Reported faster platform-independent GLTF renderer compared with common web engines for your use case.</span>
+          </div>
+          <div class="stat">
+            <strong>30%</strong>
+            <span>Performance improvement on an ML-enhanced C++ OpenGL renderer with interaction features.</span>
+          </div>
+          <div class="stat">
+            <strong>2 Years+</strong>
+            <span>Industry experience across rendering, synthetic data generation, and immersive media pipelines.</span>
+          </div>
+          <div class="stat">
+            <strong>Top Performer</strong>
+            <span>Recognized in graphics-focused training and internal performance cycles.</span>
+          </div>
+        </div>
+
+        <div class="socials">
+          <a href="https://linkedin.com/in/sl-akash-kumar" target="_blank" rel="noopener">linkedin.com/in/sl-akash-kumar</a>
+          <a href="https://github.com/akashkumarsl" target="_blank" rel="noopener">github.com/akashkumarsl</a>
+          <a href="mailto:your-email@example.com">your-email@example.com</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section panel reveal" id="experience">
+      <div class="section-head">
+        <div>
+          <small>Experience</small>
+          <h3>Selected work and impact</h3>
+        </div>
+        <p>Focused on graphics engineering, rendering performance, cross-platform 3D systems, and machine-learning-enhanced tools for practical product workflows.</p>
+      </div>
+
+      <div class="experience-grid">
+        <article class="experience-card">
+          <div class="exp-top">
+            <div>
+              <h4>Sony India Software Center, Bangalore</h4>
+              <div class="subrole">Software Engineer Grade 3</div>
+            </div>
+            <span class="tag">Apr 2023 – Present</span>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill">Exceeds Expectations · FY 2023</span>
+            <span class="pill">Exceeds Expectations · FY 2024</span>
+          </div>
+
+          <ul class="bullets">
+            <li><strong>ML-Enhanced C++ OpenGL Renderer:</strong> Built a renderer with OBJ support and Phong lighting, then integrated MediaPipe-based eye gaze and pinch-zoom interaction while improving performance by 30%.</li>
+            <li><strong>Platform-Independent GLTF Renderer:</strong> Developed a WebGL renderer for Sony Spatial Reality Display with async GLTF parsing, animation handling, dynamic shader logic, PBR, and Draco support.</li>
+            <li><strong>Synthetic Data Generator for Unreal Engine:</strong> Created a Movie Render pipeline plugin for 2D and 3D bounding boxes, segmentation, and keypoint generation with camera and actor randomization.</li>
+            <li><strong>Live XR Video Workflows:</strong> Contributed to photogrammetry-driven live 3D video systems using MediaPipe, Open3D, COLMAP, and VRM export pipelines.</li>
+            <li><strong>Spatial Audio and Virtual Production:</strong> Worked on HRTF-based spatial audio ideas using ear geometry from video and supported plugin-related development for virtual production.</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <!-- your #skills -->
-    <section id="skills">
-      <div class="sec-head"><span class="sec-label">Skills</span><div class="sec-rule"></div></div>
-      <div class="skill-rows">
-        <div class="skill-row"><div class="sk-cat">Languages</div><div class="sk-val">C++, Python, Java, JavaScript</div></div>
-        <div class="skill-row"><div class="sk-cat">Technologies</div><div class="sk-val">Rendering Pipeline · Photogrammetry · OpenGL · WebGL · Unreal Engine · Draco · ARCore · COLMAP · Texture Compression</div></div>
-        <div class="skill-row"><div class="sk-cat">Frameworks</div><div class="sk-val">GLFW · Assimp · GLM · ImGui · PyOpenGL · PyAssimp</div></div>
-        <div class="skill-row"><div class="sk-cat">ML Frameworks</div><div class="sk-val">MediaPipe · OpenCV · TensorFlow</div></div>
-        <div class="skill-row"><div class="sk-cat">Rendering</div><div class="sk-val">Forward / Deferred Rendering · Phong Lighting · PBR · Cook-Torrance BRDF · IBL Skybox</div></div>
-        <div class="skill-row"><div class="sk-cat">Tools</div><div class="sk-val">Visual Studio · Git · VS Code · Docker</div></div>
+    <section class="section panel reveal" id="skills">
+      <div class="section-head">
+        <div>
+          <small>Skills</small>
+          <h3>Technical stack</h3>
+        </div>
+        <p>A strong mix of rendering, systems programming, real-time graphics, and machine learning tools used in practical engineering workflows.</p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h4>Core Languages</h4>
+          <div class="skill-pills">
+            <span class="pill">C++</span>
+            <span class="pill">Python</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Java</span>
+          </div>
+          <p class="muted">Used across rendering systems, automation tools, prototyping, and cross-platform application workflows.</p>
+        </article>
+
+        <article class="skill-card">
+          <h4>Graphics & Rendering</h4>
+          <div class="skill-pills">
+            <span class="pill">OpenGL</span>
+            <span class="pill">WebGL</span>
+            <span class="pill">PBR</span>
+            <span class="pill">Cook-Torrance</span>
+            <span class="pill">Deferred Rendering</span>
+            <span class="pill">IBL</span>
+          </div>
+          <p class="muted">Focused on photorealistic rendering, efficient pipelines, shader systems, and real-time visual fidelity.</p>
+        </article>
+
+        <article class="skill-card">
+          <h4>3D Pipelines & Tools</h4>
+          <div class="skill-pills">
+            <span class="pill">Unreal Engine</span>
+            <span class="pill">GLTF</span>
+            <span class="pill">Draco</span>
+            <span class="pill">COLMAP</span>
+            <span class="pill">Photogrammetry</span>
+            <span class="pill">Texture Compression</span>
+          </div>
+          <p class="muted">Experience spanning 3D asset ingestion, data generation, optimization, and immersive media workflows.</p>
+        </article>
+
+        <article class="skill-card">
+          <h4>ML & Supporting Frameworks</h4>
+          <div class="skill-pills">
+            <span class="pill">MediaPipe</span>
+            <span class="pill">OpenCV</span>
+            <span class="pill">TensorFlow</span>
+            <span class="pill">Open3D</span>
+            <span class="pill">GLM</span>
+            <span class="pill">Assimp</span>
+          </div>
+          <p class="muted">Applied to interaction systems, data generation, geometry processing, and pipeline acceleration.</p>
+        </article>
       </div>
     </section>
 
-    <!-- your #education -->
-    <section id="education">
-      <div class="sec-head"><span class="sec-label">Education</span><div class="sec-rule"></div></div>
-      <div class="edu-rows">
-
-        <div class="education-item">
-          <div class="edu-left">
-            <h3>IIT Madras</h3>
-            <p>Sony &amp; Pravartak's Graphics Course · Sep 2022 – Mar 2023</p>
-            <p>OS · Networking · C++ · Python · Computer Graphics</p>
-          </div>
-          <span class="edu-badge">Top Performer</span>
+    <section class="section panel reveal" id="education">
+      <div class="section-head">
+        <div>
+          <small>Education</small>
+          <h3>Learning foundation</h3>
         </div>
+        <p>Your profile benefits from showing credibility quickly, so the education area is made cleaner, shorter, and easier to scan.</p>
+      </div>
 
-        <div class="education-item">
-          <div class="edu-left">
-            <h3>Anna University — Mepco Schlenk Engineering College</h3>
-            <p>BE in Engineering · 2018 – 2022</p>
+      <div class="education-grid">
+        <article class="education-card">
+          <div class="edu-top">
+            <div>
+              <h4>IIT Madras</h4>
+              <p class="muted">Sony & Pravartak’s Graphics Course · Sep 2022 – Mar 2023<br />OS, Networking, C++, Python, Computer Graphics</p>
+            </div>
+            <span class="tag">Top Performer</span>
           </div>
-          <div class="edu-score">82.3<small>Score %</small></div>
-        </div>
+        </article>
 
-        <div class="education-item">
-          <div class="edu-left">
-            <h3>Higher Secondary School</h3>
-            <p>Class XII · 2017 – 2018</p>
+        <article class="education-card">
+          <div class="edu-top">
+            <div>
+              <h4>Anna University — Mepco Schlenk Engineering College</h4>
+              <p class="muted">BE in Engineering · 2018 – 2022</p>
+            </div>
+            <span class="tag">82.3%</span>
           </div>
-          <div class="edu-score">89.2<small>Score %</small></div>
-        </div>
+        </article>
 
-        <div class="education-item">
-          <div class="edu-left">
-            <h3>SSLC</h3>
-            <p>Class X · 2015 – 2016</p>
+        <article class="education-card">
+          <div class="edu-top">
+            <div>
+              <h4>Higher Secondary School</h4>
+              <p class="muted">Class XII · 2017 – 2018</p>
+            </div>
+            <span class="tag">89.2%</span>
           </div>
-          <div class="edu-score">97.4<small>Score %</small></div>
-        </div>
+        </article>
 
+        <article class="education-card">
+          <div class="edu-top">
+            <div>
+              <h4>SSLC</h4>
+              <p class="muted">Class X · 2015 – 2016</p>
+            </div>
+            <span class="tag">97.4%</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <div class="foot">
-      <span style="font-family:'Great Vibes',cursive; font-size:22px; color:var(--calli-sub); letter-spacing:.5px; margin-right:10px; vertical-align:middle; transition:color .35s">Akash Kumar SL</span>
-      <span style="color:var(--dim)">· Bangalore, India · © 2026</span>
-    </div>
-
+    <footer class="footer reveal">
+      <span>Designed with a modern glassmorphism-inspired UI and smooth section reveals.</span>
+      <span>© 2026 SL Akash Kumar · Bangalore, India</span>
+    </footer>
   </main>
-</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  /* ── Theme toggle ── */
-  const root  = document.documentElement;
-  const tog   = document.getElementById('tog');
-  const label = document.getElementById('tog-label');
-  let dark = false;
+  <script>
+    const sections = document.querySelectorAll('section[id], .hero[id]');
+    const navLinks = document.querySelectorAll('.nav a');
 
-  tog.addEventListener('click', () => {
-    dark = !dark;
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    label.textContent = dark ? 'Light' : 'Dark';
-  });
+    const linkMap = [...navLinks].map(link => ({
+      link,
+      id: link.getAttribute('href').replace('#', '')
+    }));
 
-  /* ── Scroll-spy nav ── */
-  const navLinks = document.querySelectorAll('#sidenav a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting)
-        navLinks.forEach(l => l.classList.toggle('on', l.getAttribute('href
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          linkMap.forEach(({ link, id: linkId }) => {
+            link.classList.toggle('active', linkId === id);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach(section => spy.observe(section));
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealItems.forEach(item => revealObserver.observe(item));
+  </script>
+</body>
+</html>
